@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nexuscode – Web Cost Estimator</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS (MUST come after Bootstrap to override it) -->
+    <link rel="stylesheet" href="{% static 'estimator/css/styles.css' %}">
+
+    <!-- Optional JS -->
+    <script src="{% static 'estimator/js/scripts.js' %}"></script>
+</head>
+<body>
+
+    <header>
+        <h1>Nexuscode – Web Cost Estimator</h1>
+    </header>
+
+    <main>
+        <form method="post">
+            {% csrf_token %}
+
+            <label>Website Type</label>
+            <select name="site_type">
+                <option value="landing">Landing Page</option>
+                <option value="business">Business Website</option>
+                <option value="ecommerce">E-commerce</option>
+                <option value="blog">Blog</option>
+                <option value="saas">SaaS / Web App</option>
+                <option value="portfolio">Portfolio</option>
+            </select>
+
+            <label>Number of Pages</label>
+            <input type="number" name="pages" required>
+
+            <label>Select Desired Features:</label>
+<div class="form-check mb-2">
+    <input class="form-check-input" type="checkbox" name="features" value="contact_form" id="feature1">
+    <label class="form-check-label" for="feature1">Contact Form</label>
+</div>
+<div class="form-check mb-2">
+    <input class="form-check-input" type="checkbox" name="features" value="ecommerce" id="feature2">
+    <label class="form-check-label" for="feature2">Payment Integration</label>
+</div>
+<div class="form-check mb-2">
+    <input class="form-check-input" type="checkbox" name="features" value="booking" id="feature3">
+    <label class="form-check-label" for="feature3">Booking System</label>
+</div>
+<div class="form-check mb-2">
+    <input class="form-check-input" type="checkbox" name="features" value="dashboard" id="feature4">
+    <label class="form-check-label" for="feature4">User Dashboard</label>
+</div>
+<div class="form-check mb-3">
+    <input class="form-check-input" type="checkbox" name="features" value="chatbot" id="feature5">
+    <label class="form-check-label" for="feature5">Chatbot</label>
+</div>
+
+
+            <label>Design Level</label>
+            <select name="design">
+                <option value="none">No Design</option>
+                <option value="partial">Partial Design Help</option>
+                <option value="full">Full Design Service</option>
+            </select>
+
+            <label>Urgency</label>
+            <select name="urgency">
+                <option value="low">No Rush</option>
+                <option value="medium">2–4 weeks</option>
+                <option value="high">Urgent (1 week)</option>
+            </select>
+
+            <button type="submit">Estimate Cost</button>
+        </form>
+
+        {% if result %}
+            <div class="alert">
+                <strong>Estimated Cost:</strong> ${{ result }}
+            </div>
+        {% endif %}
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Nexuscode</p>
+    </footer>
+
+</body>
+</html>
