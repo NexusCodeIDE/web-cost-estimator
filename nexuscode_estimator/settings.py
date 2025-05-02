@@ -126,7 +126,7 @@ import os
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'estimator/static')
+    os.path.join(BASE_DIR, 'estimator/static'),
 ]
 ALLOWED_HOSTS = ['nexuscode-estimator.onrender.com']
 
